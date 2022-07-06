@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+
+import "./App.css";
+import Address from "./Componant/Checkout/AddressPage/Address";
+import Payment from "./Componant/Checkout/PaymentPage/payment";
+import Footer from "./Componant/Footer/Footer";
+import Home from "./Componant/Homepage/Home";
+
+import Navbar from "./Componant/Navbar/Navbar";
+import { PrivateComponent } from "./Componant/PrivetComponant";
+import Product from "./Componant/Product/Product";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/product/:query" element={<Product />}></Route>
+        <Route
+          path="/adress"
+          element={
+            <PrivateComponent>
+              <Address />
+            </PrivateComponent>
+          }
+        ></Route>
+        <Route path="/payment" element={<Payment />}></Route>
+      </Routes>
+      <Footer />
     </div>
   );
 }

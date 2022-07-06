@@ -1,0 +1,51 @@
+#mainContainer {
+  width: 100%;
+}
+#container1 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+#container11 {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  padding: 10px;
+  max-width: max-content;
+}
+#container11:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+#lowerbox {
+  display: flex;
+  margin-top: 15px;
+  justify-content: space-between;
+}
+#leftbox {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+}
+#name {
+  text-align: left;
+  color: rgb(184, 168, 168);
+  font-size: 15px;
+}
+#imgbox {
+  display: flex;
+  justify-content: center;
+}
+
+#qty {
+  text-align: left;
+  color: rgb(184, 168, 168);
+  font-size: 13px;
+}
+#price {
+  color: black;
+  font-size: 16px;
+  text-align: left;
+}
+#cartbutton {
+  margin-top: 11%;
+}

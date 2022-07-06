@@ -2,20 +2,22 @@ const express = require("express");
 const env = require("dotenv");
 const app = express();
 const mongoose = require("mongoose");
-// const { default: mongoose } = require("mongoose");
+const cors = require("cors");
+app.use(cors());
+app.options("*", cors());
 
-const adminRoutes = require("./routes/admin/auth");
 const authRoutes = require("./routes/auth");
-const categoryRoutes=require("./routes/Category")
-const productRoutes=require("./routes/product")
-const cartRoutes=require("./routes/Cart")
+const DryFruitsController = require("./controller/DryFruits");
+const FruitsController = require("./controller/Fruits");
+const MangosController = require("./controller/Mangos");
+const StaplesController = require("./controller/Staples");
+const VegitableController = require("./controller/Vegitable");
 
 env.config();
 
 mongoose
   .connect(
     `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@cluster0.yswkt.mongodb.net/${process.env.MONGO_DB_DATABSASE}`
-    // { useNewUrlParser: true, useUniFiedTopology: true,useCreateIndex:true }
   )
   .then(() => {
     console.log("Database Conected");
@@ -23,11 +25,12 @@ mongoose
 
 app.use(express.json());
 app.use("/api", authRoutes);
-app.use("/api", adminRoutes);
-app.use("/api", categoryRoutes);
-app.use("/api", productRoutes);
-app.use("/api", cartRoutes);
+app.use("/api/dryfruits", DryFruitsController);
+app.use("/api/fruits", FruitsController);
+app.use("/api/mangos", MangosController);
+app.use("/api/kitchenstaples", StaplesController);
+app.use("/api/vegitables", VegitableController);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 4800, () => {
   console.log("conected to 4800");
 });

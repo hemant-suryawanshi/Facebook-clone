@@ -9,7 +9,7 @@ exports.signin = (req, res) => {
         const token = jwt.sign({ _id: user._id,role:user.role }, process.env.JWT_SECRET, {
           expiresIn: "1h",
         });
-        const { _id, firstname, lastname, email, role, fullname } = user;
+        const { _id, firstname, lastname, email,  fullname } = user;
         res.status(200).json({
           token,
           user: {
@@ -17,7 +17,6 @@ exports.signin = (req, res) => {
             firstname,
             lastname,
             email,
-            role,
             fullname,
           },
         });
