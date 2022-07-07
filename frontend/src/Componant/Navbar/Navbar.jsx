@@ -20,6 +20,7 @@ import { AuthContext } from "../../Context/AuthContext";
 import Cart from "../Cart/Cart";
 import { useNavigate } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import Location from "../Location/Location";
 
 const Navbar = () => {
   const { logoutAuth, token, user } = useContext(AuthContext);
@@ -38,11 +39,8 @@ const Navbar = () => {
         <img src={img1}></img>
       </div>
 
-      <div id="div2" >
-        <div id="div21">
-          <ImLocation />
-        </div>
-        <div id="div22">Pawai</div>
+      <div id="div2">
+        <Location/>
       </div>
 
       <div id="div3">
@@ -59,12 +57,12 @@ const Navbar = () => {
         <Cart />
       </div>
 
-      <div id="div5" >
+      <Button id="div5" disabled>
         <div>
           <BiWallet />
         </div>
         <div>Credit</div>
-      </div>
+      </Button>
 
       <div id="div6">
         {token == "" ? (
