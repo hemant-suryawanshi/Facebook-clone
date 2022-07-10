@@ -1,0 +1,28 @@
+.mapouter {
+    position: relative;
+    text-align: right;
+    height: 400px;
+    width: 300px;
+}
+.gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    height: 400px;
+    width: 300px;
+}
+#drwerHeader{
+    padding: 0;
+    
+}
+#searchlocationbox{
+    margin-top: 1520px;
+    padding-top: 20px;
+    display: flex;
+    gap: 30px;
+   
+}
+#setLocationinputBox{
+    margin-top: 430px;
+    padding-top: 30px;
+    
+}
