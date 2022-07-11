@@ -57,7 +57,7 @@ const Navbar = () => {
         <Cart />
       </div>
 
-      <Button id="div5" disabled>
+      <Button id="div5" disabled={token==""?true:false}>
         <div>
           <BiWallet />
         </div>
