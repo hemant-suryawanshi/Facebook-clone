@@ -122,7 +122,7 @@ function Login() {
 
   return (
     <>
-      <Button onClick={onOpen} id="mainid" m={"0"} p="10px" >
+      <Button onClick={onOpen} id="mainid" m={"0"} p="10px" size='md'>
         <div>
           <FaUserAlt />
         </div>{" "}

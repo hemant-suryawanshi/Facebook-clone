@@ -44,10 +44,12 @@ const Navbar = () => {
       </div>
 
       <div id="div3">
-        <InputGroup w={"570px"} rounded={"xl"}>
+        <InputGroup w={"570px"} rounded={"xl"} >
           <Input
             placeholder="find Fresh vegitable frute and dairy"
             rounded={"full"}
+      
+
           />
           <InputRightElement children={<FaSearch color="green.500" />} />
         </InputGroup>
@@ -57,7 +59,7 @@ const Navbar = () => {
         <Cart />
       </div>
 
-      <Button id="div5" disabled={token==""?true:false}>
+      <Button id="div5" disabled={token==""?true:false} size='md'>
         <div>
           <BiWallet />
         </div>

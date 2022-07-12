@@ -12,4 +12,14 @@ router.get("", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const frute = await Fruits.findById(req.params.id).lean().exec();
+
+    return res.status(200).send(frute);
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+});
+
 module.exports = router;

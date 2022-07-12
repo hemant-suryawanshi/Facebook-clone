@@ -43,7 +43,7 @@ const Cart = () => {
 
   return (
     <>
-      <Button onClick={onOpen} key="sm" m={"0"} p={"10px"}>
+      <Button onClick={onOpen} key="sm" m={"0"} p={"10px"} size='md'>
         <div>
           <BsCart3 />
         </div>{" "}
