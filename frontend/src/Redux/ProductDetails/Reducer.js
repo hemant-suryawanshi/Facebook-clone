@@ -1,29 +1,29 @@
-import { productAction } from "./ActionTypes";
+import { productOneAction } from "./ActionTypes";
 
 const initState = {
   loading: true,
-  Products: [],
+  Product: {},
   error: false,
 };
 
-export const ProductReducer = (state = initState, action) => {
+export const ProductOneReducer = (state = initState, action) => {
   switch (action.type) {
-    case productAction.FETCH_DATA_REQUEST: {
+    case productOneAction.FETCH_ONE_DATA_REQUEST: {
       return {
         ...state,
         loading: true,
         error: false,
       };
     }
-    case productAction.FETCH_DATA_SUCCESS: {
+    case productOneAction.FETCH_ONE_DATA_SUCCESS: {
       return {
         ...state,
-        Products: action.payload,
+        Product: action.payload,
         loading: false,
         error: false,
       };
     }
-    case productAction.FETCH_DATA_FAILURE: {
+    case productOneAction.FETCH_ONE_DATA_FAILURE: {
       return {
         ...state,
         error: true,

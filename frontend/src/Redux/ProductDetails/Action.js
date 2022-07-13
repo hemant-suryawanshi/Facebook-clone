@@ -1,32 +1,32 @@
 import axios from "axios";
 
-import { productAction } from "./ActionTypes";
+import { productOneAction } from "./ActionTypes";
 
-export const FetchDataRequest = () => ({
-  type: productAction.FETCH_DATA_REQUEST,
+export const FetchOneDataRequest = () => ({
+  type: productOneAction.FETCH_ONE_DATA_REQUEST,
 });
-export const FetchDataSucess = (data) => ({
-  type: productAction.FETCH_DATA_SUCCESS,
+export const FetchOneDataSucess = (data) => ({
+  type: productOneAction.FETCH_ONE_DATA_SUCCESS,
   payload: data,
 });
-export const FetchDataFailure = () => ({
-  type: productAction.FETCH_DATA_FAILURE,
+export const FetchOneDataFailure = () => ({
+  type: productOneAction.FETCH_ONE_DATA_FAILURE,
 });
 
-export const Fetchdata = (query) => (dispatch) => {
-  const getdataRequestAction = FetchDataRequest();
+export const FetchOnedata = (query,id) => (dispatch) => {
+  const getdataRequestAction = FetchOneDataRequest();
   dispatch(getdataRequestAction);
   axios({
-    url: `https://fraazomasaiapi.herokuapp.com/api/${query}`,
+    url: `http://localhost:4800/api/${query}/${id}`,
     method: "GET",
   })
     .then((res) => {
-      console.log(res)
-      const getdataSuccessAction = FetchDataSucess(res.data);
+      console.log("res",res)
+      const getdataSuccessAction = FetchOneDataSucess(res.data);
       dispatch(getdataSuccessAction);
     })
     .catch((err) => {
-      const getdataErrorAction = FetchDataFailure();
+      const getdataErrorAction = FetchOneDataFailure();
       dispatch(getdataErrorAction);
     });
 };
