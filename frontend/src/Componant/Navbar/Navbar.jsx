@@ -51,7 +51,7 @@ const Navbar = () => {
       
 
           />
-          <InputRightElement children={<FaSearch color="green.500" />} />
+          <InputRightElement children={<FaSearch color="green" />} />
         </InputGroup>
       </div>
 

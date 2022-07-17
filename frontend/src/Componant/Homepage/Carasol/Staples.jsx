@@ -1,70 +1,28 @@
 import { Box, Button, useToast } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./Carosel.css";
 import { FaCartPlus } from "react-icons/fa";
+import axios from "axios";
 
 export const StaplesCarasol = () => {
-    const toast = useToast();
-  const staples = [
-    {
-      image:
-        "https://s3.ap-south-1.amazonaws.com/fraazo-prod/products/product_images/000/003/435/original/data?1643108708",
-      name: "Maya Besan 500G",
-      quantity: "500 g",
-      price: "54",
-    },
-    {
-      image:
-        "https://s3.ap-south-1.amazonaws.com/fraazo-prod/products/product_images/000/003/437/original/data?1643108712",
-      name: "Maya Chana Dal Premium 500G",
-      quantity: "500 g",
-      price: "57",
-    },
-    {
-      image:
-        "https://s3.ap-south-1.amazonaws.com/fraazo-prod/products/product_images/000/003/438/original/data?1643108714",
-      name: "Maya Chana Dal Standerd 500G",
-      quantity: "500 g",
-      price: "49",
-    },
-    {
-      image:
-        "https://s3.ap-south-1.amazonaws.com/fraazo-prod/products/product_images/000/003/439/original/data?1643108717",
-      name: "Maya Groundnut 500G",
-      quantity: "500 g",
-      price: "85",
-    },
-    {
-      image:
-        "https://s3.ap-south-1.amazonaws.com/fraazo-prod/products/product_images/000/003/440/original/data?1643108719",
-      name: "Maya Juwar Premium 1Kg",
-      quantity: "1 kg",
-      price: "56",
-    },
-    {
-      image:
-        "https://images.fraazo.com/fraazo-prod/images/images/000/005/083/original/data/tr:w-256,h-256",
-      name: "Maya HMT Kolam Rice(5 Kg)",
-      quantity: "5 kg",
-      price: "254",
-    },
-    {
-      image:
-        "https://images.fraazo.com/fraazo-prod/products/product_images/000/003/449/original/data/tr:w-256,h-256",
-      name: "Maya Maida",
-      quantity: "500 g",
-      price: "22",
-    },
-    {
-      image:
-        "https://images.fraazo.com/fraazo-prod/products/product_images/000/003/449/original/data/tr:w-256,h-256",
-      name: "Maya Premium Suji",
-      quantity: "500 g",
-      price: "29",
-    },
-  ];
+  const toast = useToast();
+  const [kitchenstaples, setkitchenstaples] = useState([]);
+
+  useEffect(() => {
+    axios({
+      url: `https://fraazomasaiapi.herokuapp.com/api/kitchenstaples`,
+      method: "GET",
+    })
+      .then((res) => {
+        setkitchenstaples(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const HandelCart = (ele) => {
     console.log(ele);
     toast({
@@ -96,9 +54,9 @@ export const StaplesCarasol = () => {
       breakpoint: { max: 464, min: 0 },
       items: 1,
     },
-  }
+  };
   return (
-    <div style={{ display: "flex", textAlign: "center",  marginTop:"5px" }}>
+    <div style={{ display: "flex", textAlign: "center", marginTop: "5px" }}>
       <div
         style={{
           width: "86%",
@@ -110,7 +68,7 @@ export const StaplesCarasol = () => {
           autoPlay={false}
           autoPlaySpeed={50000}
         >
-          {staples.map((ele) => (
+          {kitchenstaples?.map((ele) => (
             <Box id="carosel11">
               <Box id="imgbox">
                 <img src={ele.image} />

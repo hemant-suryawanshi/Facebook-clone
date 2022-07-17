@@ -36,13 +36,14 @@ const Location = () => {
     );
     setLocationContext(location);
   };
-
+  
+ 
   return (
     <>
-      <Button onClick={onOpen} size='md'>
+      <Button onClick={onOpen} size="md" maxWidth={"120px"} minWidth={"120px"}>
         {" "}
         <ImLocation />
-        {locationContext == "" ? "Location" : locationContext}
+        {locationContext == "" ? "Location" : locationContext.slice(0, 12)}
       </Button>
 
       <Drawer onClose={onClose} isOpen={isOpen} size="sm" placement="left">

@@ -1,63 +1,31 @@
 import { Box, Button, useToast } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./Carosel.css";
 import { FaCartPlus } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import axios from "axios";
 
 export const DryfruiteCarasol = () => {
-    const toast = useToast();
-  const dryfruits= [
-    {
-        "image": "https://s3.ap-south-1.amazonaws.com/fraazo-prod/products/product_images/000/000/578/original/data?1635085993",
-        "name": "Cashew 200gms (Pack of 2*100gms)",
-        "quantity": "200 g",
-        "price": "182"
-    },
-    {
-        "image": "https://s3.ap-south-1.amazonaws.com/fraazo-prod/products/product_images/000/000/579/original/data?1635086198",
-        "name": "Cashew 500gms (Pack of 5*100gms)",
-        "quantity": "500 g",
-        "price": "450"
-    },
-    {
-        "image": "https://s3.ap-south-1.amazonaws.com/fraazo-prod/products/product_images/000/000/580/original/data?1635086672",
-        "name": "Cashew Tukda - 100gm",
-        "quantity": "100 g",
-        "price": "84"
-    },
-    {
-        "image": "https://s3.ap-south-1.amazonaws.com/fraazo-prod/products/product_images/000/000/584/original/data?1635137208",
-        "name": "Walnut 200gms (Pack of 2*100gms)",
-        "quantity": "200 g",
-        "price": "335"
-    },
-    {
-        "image": "https://s3.ap-south-1.amazonaws.com/fraazo-prod/products/product_images/000/000/585/original/data?1635137356",
-        "name": "Walnut 500gms (Pack of 5*100gms)",
-        "quantity": "500 g",
-        "price": "825"
-    },
-    {
-        "image": "https://images.fraazo.com/fraazo-prod/products/product_images/000/000/598/original/data/tr:w-256,h-256",
-        "name": "Dry Dates (Pack of 5*200gms)",
-        "quantity": "1 Kg",
-        "price": "330"
-    },
-    {
-        "image": "https://images.fraazo.com/fraazo-prod/products/product_images/000/000/598/original/data/tr:w-256,h-256",
-        "name": "Dry Dates (Pack of 2*200gms)",
-        "quantity": "400 g",
-        "price": "135"
-    },
-    {
-        "image": "https://images.fraazo.com/fraazo-prod/products/product_images/000/000/598/original/data/tr:w-256,h-256",
-        "name": "Dry Dates",
-        "quantity": "200 g",
-        "price": "70"
-    }
-]
-const responsive = {
+  const toast = useToast();
+  const [dryfruits, setdryfruits] = useState([]);
+
+  useEffect(() => {
+    axios({
+      url: `https://fraazomasaiapi.herokuapp.com/api/dryfruits`,
+      method: "GET",
+    })
+      .then((res) => {
+        setdryfruits(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },[]);
+
+  const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
@@ -90,7 +58,7 @@ const responsive = {
     localStorage.setItem("FraazoCart", JSON.stringify(cart));
   };
   return (
-    <div style={{ display: "flex", textAlign: "center" ,marginTop:"5px"}}>
+    <div style={{ display: "flex", textAlign: "center", marginTop: "5px" }}>
       <div
         style={{
           width: "86%",
@@ -102,7 +70,7 @@ const responsive = {
           autoPlay={false}
           autoPlaySpeed={50000}
         >
-          {dryfruits.map((ele) => (
+          {dryfruits?.map((ele) => (
             <Box id="carosel11">
               <Box id="imgbox">
                 <img src={ele.image} />
