@@ -5,6 +5,7 @@ import "react-multi-carousel/lib/styles.css";
 import "./Carosel.css";
 import { FaCartPlus } from "react-icons/fa";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export const VegitableCarasol = () => {
     const toast = useToast();
@@ -55,6 +56,7 @@ const HandelCart = (ele) => {
       items: 1,
     },
   };
+  var query="vegitables"
   return (
     <div style={{ display: "flex", textAlign: "center",  marginTop:"5px"}}>
       <div
@@ -70,9 +72,12 @@ const HandelCart = (ele) => {
         >
           {vegitables?.map((ele) => (
             <Box id="carosel11">
+              <Link to={`/product/${query}/${ele.name}/${ele._id}`}>
+
               <Box id="imgbox">
                 <img src={ele.image} />
               </Box>
+              </Link>
               <Box id="textBox">
                 <p id="name">
                   {ele.name.slice(0, 26)}

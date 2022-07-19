@@ -5,6 +5,7 @@ import "react-multi-carousel/lib/styles.css";
 import "./Carosel.css";
 import { FaCartPlus } from "react-icons/fa";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export const MangoesCarasol = () => {
   const toast = useToast();
@@ -55,8 +56,9 @@ export const MangoesCarasol = () => {
       items: 1,
     },
   };
+  var query="mangos"
   return (
-    <div style={{ display: "flex", textAlign: "center",  marginTop:"5px" }}>
+    <div style={{ display: "flex", textAlign: "center", marginTop: "5px" }}>
       <div
         style={{
           width: "86%",
@@ -70,9 +72,11 @@ export const MangoesCarasol = () => {
         >
           {mangoes?.map((ele) => (
             <Box id="carosel11">
-              <Box id="imgbox">
-                <img src={ele.image} />
-              </Box>
+              <Link to={`/product/${query}/${ele.name}/${ele._id}`}>
+                <Box id="imgbox">
+                  <img src={ele.image} />
+                </Box>
+              </Link>
               <Box id="textBox">
                 <p id="name">
                   {ele.name.slice(0, 26)}

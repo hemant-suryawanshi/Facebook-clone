@@ -164,9 +164,11 @@ export const BestDealCarasol = () => {
         >
           {Bestdeal.map((ele) => (
             <Box id="carosel11">
+             
               <Box id="imgbox">
                 <img src={ele.image} />
               </Box>
+             
               <Box id="textBox">
                 <p id="name">
                   {ele.name.slice(0, 26)}

@@ -18,6 +18,11 @@ const ProductDetails = () => {
 
   useEffect(() => {
     dispatch(FetchOnedata(query, id));
+    window.scrollTo({
+      top: 0,
+    
+      behavior: "smooth"
+    });
   }, [dispatch, query]);
 
   const Oneproducts = useSelector((store) => store?.OneProduct?.Product);

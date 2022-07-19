@@ -21,6 +21,7 @@ import Cart from "../Cart/Cart";
 import { useNavigate } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import Location from "../Location/Location";
+import SearchBox from "./SearchBox/SearchBox";
 
 const Navbar = () => {
   const { logoutAuth, token, user } = useContext(AuthContext);
@@ -40,26 +41,18 @@ const Navbar = () => {
       </div>
 
       <div id="div2">
-        <Location/>
+        <Location />
       </div>
 
       <div id="div3">
-        <InputGroup w={"570px"} rounded={"xl"} >
-          <Input
-            placeholder="find Fresh vegitable frute and dairy"
-            rounded={"full"}
-      
-
-          />
-          <InputRightElement children={<FaSearch color="green" />} />
-        </InputGroup>
+        <SearchBox />
       </div>
 
       <div id="div4">
         <Cart />
       </div>
 
-      <Button id="div5" disabled={token==""?true:false} size='md'>
+      <Button id="div5" disabled={token == "" ? true : false} size="md">
         <div>
           <BiWallet />
         </div>
@@ -96,4 +89,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
- 
