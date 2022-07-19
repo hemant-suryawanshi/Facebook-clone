@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/query", async (req, res) => {
   try {
-    const searchpara = await AllComponant.findAll({name:req.params.query}).lean().exec();
+    const searchpara = await AllComponant.findOneAndDelete({name:req.params.query}).lean().exec();
 
     return res.status(200).send(searchpara);
   } catch (err) {
