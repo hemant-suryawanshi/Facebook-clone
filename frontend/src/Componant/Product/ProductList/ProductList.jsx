@@ -6,6 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 
+
 const ProductList = () => {
   const { query } = useParams();
   const toast = useToast();
@@ -24,20 +25,24 @@ const ProductList = () => {
 
   const handelSortofFrazzo = () => {
     if (sort == "low") {
-      newarray = products.sort((a, b) => {
-        return a.price - b.price;
+      newarray = products.sort(function (a, b) {
+        if (a.price < b.price) {
+          return -1;
+        }
+        if (a.price > b.price) {
+          return 1;
+        }
+        return 0;
       });
     } else if (sort == "high") {
-      newarray = products.sort((a, b) => {
-        return b.price - a.price;
-      });
-    } else if (sort == "abc") {
-      newarray = products.sort((a, b) => {
-        return b.name - a.name;
-      });
-    } else if (sort == "cba") {
-      newarray = products.sort((a, b) => {
-        return b.name - a.name;
+      newarray = products.sort(function (a, b) {
+        if (a.price < b.price) {
+          return 1;
+        }
+        if (a.price > b.price) {
+          return -1;
+        }
+        return 0;
       });
     }
   };
@@ -73,11 +78,9 @@ const ProductList = () => {
         >
           <option value="low">Price Low to High</option>
           <option value="high">Price High to low</option>
-          <option value="abc">A to Z</option>
-          <option value="cba">Z to A</option>
         </Select>
       </Box>
-      <Box id="container1">
+      <Box id="container1list">
         {newarray.map((ele) => (
           <Box id="container11">
             <Link to={`/product/${query}/${ele.name}/${ele._id}`}>
@@ -90,7 +93,7 @@ const ProductList = () => {
                 {ele.name.slice(0, 26)}
                 {ele.name.length > 26 && "..."}
               </p>
-              <Box id="lowerbox">
+              <Box id="lowerboxlist">
                 <Box id="leftbox">
                   <p id="qty">{ele.quantity}</p>
                   <p id="price">₹{ele.price}</p>
@@ -104,6 +107,7 @@ const ProductList = () => {
                     rounded={"full"}
                     onClick={() => HandelCart(ele)}
                   >
+               
                     <FaCartPlus />
                     Add
                   </Button>
