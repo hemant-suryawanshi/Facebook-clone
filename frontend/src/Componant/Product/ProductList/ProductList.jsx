@@ -5,6 +5,8 @@ import { FaCartPlus } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import AddtoCartButton from "../../AddToCartButton/AddtoCartButton";
+
 
 
 const ProductList = () => {
@@ -14,16 +16,11 @@ const ProductList = () => {
   var newarray = products;
 
   const [sort, setSort] = useState("");
-
-  useEffect(() => {
-    handelSortofFrazzo();
-
-    return () => {
-      newarray = [];
-    };
-  }, [sort]);
+ 
+  
 
   const handelSortofFrazzo = () => {
+   
     if (sort == "low") {
       newarray = products.sort(function (a, b) {
         if (a.price < b.price) {
@@ -48,7 +45,10 @@ const ProductList = () => {
   };
 
   const HandelCart = (ele) => {
-    console.log(ele);
+    const cart = JSON.parse(localStorage.getItem("FraazoCart")) || [];
+    cart.push(ele);
+    localStorage.setItem("FraazoCart", JSON.stringify(cart));
+ 
     toast({
       title: "Successfull",
       description: `${ele.name} Added to the cart`,
@@ -57,10 +57,17 @@ const ProductList = () => {
       isClosable: true,
       position: "top",
     });
-    const cart = JSON.parse(localStorage.getItem("FraazoCart")) || [];
-    cart.push(ele);
-    localStorage.setItem("FraazoCart", JSON.stringify(cart));
+   
   };
+  useEffect(() => {
+    
+   handelSortofFrazzo();
+
+   return () => {
+     newarray = [];
+   };
+
+ }, [sort,HandelCart]);
 
   return (
     <Box id="mainContainerProductList">
@@ -99,18 +106,8 @@ const ProductList = () => {
                   <p id="price">₹{ele.price}</p>
                 </Box>
                 <Box id="rightbox">
-                  <Button
-                    colorScheme="green"
-                    variant="outline"
-                    height={"35px"}
-                    id="cartbutton"
-                    rounded={"full"}
-                    onClick={() => HandelCart(ele)}
-                  >
-               
-                    <FaCartPlus />
-                    Add
-                  </Button>
+                 
+                  <AddtoCartButton HandelCart={HandelCart} ele={ele}/>
                 </Box>
               </Box>
             </Box>
